@@ -51,7 +51,6 @@ export default async function Home() {
           aria-labelledby="plans-section"
           className="grid grid-cols-1 md:grid-cols-[18.75rem_1fr] lg:grid-cols-[23.75rem_1fr] xl:gap-[5.4375rem] lg:mb-[2.625rem]"
         >
-          {/* Иллюстрация */}
           <div className="relative flex flex-col justify-end lg:pb-[4.375rem]">
             <div className="absolute w-full h-[5.875rem] xs:h-[7.3125rem] lg:h-[5rem] bottom-0 lg:bottom-[4.375rem] left-0 bg-gradient-to-b from-transparent to-[#232829]" />
 
