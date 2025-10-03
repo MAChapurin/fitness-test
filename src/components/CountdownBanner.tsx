@@ -1,14 +1,12 @@
 "use client";
 
-import { cn } from "@/shared/lib/cn";
 import { Icon } from "@/shared/ui/icon/icon";
 import { useEffect, useRef, useState } from "react";
 import NumberFlow from "@number-flow/react";
-import { emitter } from "@/shared/lib/emitter";
-import { pad2 } from "@/shared/lib/pad2";
+import { cn, emitter, pad2 } from "@/shared/lib";
 
 export const CountdownBanner = () => {
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(120);
   const emittedRef = useRef(false);
 
   useEffect(() => {

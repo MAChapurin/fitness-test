@@ -1,9 +1,9 @@
 "use client";
-import { cn } from "@/shared/lib/cn";
-import { formatPriceThreshold } from "@/shared/lib/formatPriceThreshold";
+
 import { FC, KeyboardEvent, useRef } from "react";
 import NumberFlow from "@number-flow/react";
 import { PlanCardProps } from "@/shared/types/types";
+import { cn, formatPriceThreshold } from "@/shared/lib";
 
 export const PlanCard: FC<PlanCardProps> = ({
   id,

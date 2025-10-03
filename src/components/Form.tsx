@@ -3,7 +3,7 @@
 import { CustomCheckbox } from "@/shared/ui/CustomCheckbox";
 import Link from "next/link";
 import { useState } from "react";
-import { cn } from "@/shared/lib/cn";
+import { cn } from "@/shared/lib";
 
 export const Form = () => {
   const [agreed, setAgreed] = useState(true);

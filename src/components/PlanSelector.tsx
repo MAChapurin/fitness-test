@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useMemo, useState } from "react";
 import { PlanCard } from "./PlanCard";
-import { emitter } from "@/shared/lib/emitter";
+import { emitter } from "@/shared/lib";
 import { PlanCardProps } from "@/shared/types/types";
 
 interface PlanSelectorProps {
