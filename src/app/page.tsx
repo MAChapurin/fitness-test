@@ -13,11 +13,11 @@ export const metadata = {
       "Выберите оптимальный тариф и начните тренироваться с FitHub. Доступные планы, гарантия возврата и пробный период.",
     type: "website",
     locale: "ru_RU",
-    url: "https://fithub.com/tariffs",
+    url: "https://fitness-test-lime.vercel.app",
     siteName: "FitHub",
     images: [
       {
-        url: "https://fithub.com/hero-1920.png",
+        url: "https://fitness-test-lime.vercel.app/hero-1920.png",
         width: 1200,
         height: 630,
         alt: "Выбор тарифа FitHub",
@@ -36,8 +36,6 @@ export default async function Home() {
 
       <main
         role="main"
-        itemScope
-        itemType="https://schema.org/WebPage"
         className="mx-auto max-w-[78.5rem] px-4 md:px-5 py-5 md:py-[5rem]"
       >
         <header>

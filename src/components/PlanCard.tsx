@@ -1,6 +1,7 @@
+"use client";
 import { cn } from "@/shared/lib/cn";
 import { formatPriceThreshold } from "@/shared/lib/formatPriceThreshold";
-import { FC } from "react";
+import { FC, KeyboardEvent, useRef } from "react";
 import NumberFlow from "@number-flow/react";
 import { PlanCardProps } from "@/shared/types/types";
 
@@ -18,20 +19,57 @@ export const PlanCard: FC<PlanCardProps> = ({
   const hasDiscount = full_price > price;
   const discount = Math.round(((full_price - price) / full_price) * 100);
   const displayedPrice = isLate ? full_price : price;
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const current = cardRef.current;
+    if (!current) return;
+
+    switch (e.key) {
+      case "Enter":
+      case " ":
+        e.preventDefault();
+        onClick?.();
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        focusNextCard(current);
+        break;
+      case "ArrowDown":
+        e.preventDefault();
+        focusNextCard(current);
+        break;
+      case "ArrowLeft":
+        e.preventDefault();
+        focusPrevCard(current);
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        focusPrevCard(current);
+        break;
+    }
+  };
 
   return (
     <article
       id={id}
+      ref={cardRef}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-pressed={selected}
+      aria-label={`Тариф: ${period}, цена: ${displayedPrice} рублей`}
       itemScope
       itemType="https://schema.org/Product"
       className={cn(
         "group relative grid grid-cols-2 cursor-pointer",
-        "transform transition-[border-color, transform] duration-300 hover:scale-101",
+        "transform transition-[border-color, transform] duration-300 hover:scale-101 outline-none",
         "p-[1.125rem] xs:px-[1.8125rem] lg:px-[1.125rem] lg:pt-[4.25rem] lg:pb-[1.8125rem]",
         "gap-[1.8125rem] xs:gap-[3.5625rem] lg:gap-[3.0625rem]",
         "border-2 border-[#484D4E] bg-[#313637]",
         "rounded-[1.25rem] lg:rounded-[2.125rem]",
+        "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#313637]",
         {
           "md:col-span-3 lg:grid-cols-[auto_1fr] lg:pl-[7.625rem] lg:pr-[5rem] lg:pt-[2.125rem] lg:pb-[1.875rem] lg:gap-[2.5rem]":
             is_best,
@@ -53,12 +91,16 @@ export const PlanCard: FC<PlanCardProps> = ({
             "opacity-0": isLate,
           }
         )}
+        aria-hidden={isLate}
       >
         -{discount}%
       </div>
 
       {is_best && (
-        <div className="absolute top-[0.125rem] lg:top-[0.625rem] right-[0.8125rem] lg:right-[1.25rem] text-accent font-medium text-[0.8125rem] xs:text-base lg:text-[1.375rem]">
+        <div
+          className="absolute top-[0.125rem] lg:top-[0.625rem] right-[0.8125rem] lg:right-[1.25rem] text-accent font-medium text-[0.8125rem] xs:text-base lg:text-[1.375rem]"
+          aria-hidden="true"
+        >
           xит!
         </div>
       )}
@@ -72,6 +114,7 @@ export const PlanCard: FC<PlanCardProps> = ({
           <h3
             itemProp="name"
             className="text-base xs:text-lg md:text-[1.625rem] font-medium leading-[120%] whitespace-nowrap lg:text-center"
+            id={`plan-title-${id}`}
           >
             {period}
           </h3>
@@ -82,10 +125,12 @@ export const PlanCard: FC<PlanCardProps> = ({
           itemScope
           itemType="https://schema.org/Offer"
           className="flex flex-col items-center w-fit lg:w-full"
+          aria-describedby={`plan-title-${id} plan-price-${id}`}
         >
           <meta itemProp="priceCurrency" content="RUB" />
           <p
             itemProp="price"
+            id={`plan-price-${id}`}
             className={cn(
               "text-[1.875rem] xs:text-[2.125rem] lg:text-[3.125rem] font-semibold leading-[100%] whitespace-nowrap transition-colors duration-300",
               { "text-accent": selected }
@@ -106,6 +151,7 @@ export const PlanCard: FC<PlanCardProps> = ({
                 "line-through text-[#919191] text-sm xs:text-base lg:text-2xl leading-[120%] text-right lg:ml-auto whitespace-nowrap transition-opacity duration-300",
                 { "opacity-0": isLate }
               )}
+              aria-hidden={isLate}
             >
               {formatPriceThreshold(full_price)} ₽
             </p>
@@ -124,3 +170,21 @@ export const PlanCard: FC<PlanCardProps> = ({
     </article>
   );
 };
+
+function focusNextCard(current: HTMLElement) {
+  const cards = Array.from(
+    document.querySelectorAll<HTMLElement>('article[role="button"]')
+  );
+  const index = cards.indexOf(current);
+  const next = cards[index + 1] || cards[0];
+  next.focus();
+}
+
+function focusPrevCard(current: HTMLElement) {
+  const cards = Array.from(
+    document.querySelectorAll<HTMLElement>('article[role="button"]')
+  );
+  const index = cards.indexOf(current);
+  const prev = cards[index - 1] || cards[cards.length - 1];
+  prev.focus();
+}

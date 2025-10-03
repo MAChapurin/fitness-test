@@ -25,7 +25,7 @@ export const Form = () => {
           Я согласен с{" "}
           <Link
             href="/"
-            className="underline hover:text-accent transition-colors"
+            className="underline hover:text-accent focus-visible:text-accent transition-colors outline-none"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -34,7 +34,7 @@ export const Form = () => {
           и{" "}
           <Link
             href="/"
-            className="underline hover:text-accent transition-colors"
+            className="underline hover:text-accent focus-visible:text-accent transition-colors outline-none"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -50,9 +50,10 @@ export const Form = () => {
             "w-full",
             "mt-[1rem] xs:mt-[1.375rem] lg:mt-[0.875rem] mb-[0.625rem] xs:mb-[1.25rem] lg:mb-[1rem] px-[1.25rem] py-[1.25rem]",
             "text-lg lg:text-[1.25rem] font-bold leading-[130%] text-[#191E1F]",
-            "rounded-[1.0625rem] text-center transition-colors",
+            "rounded-[1.0625rem] text-center transition-[colors, box-shadow] duration-300 outline-none",
+            "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#313637]",
             agreed
-              ? "bg-accent cursor-pointer"
+              ? "bg-accent cursor-pointer hover:shadow-accent hover:shadow"
               : "bg-gray-400 cursor-not-allowed"
           )}
         >
