@@ -40,17 +40,20 @@
   "is_best": false,
   "text": "Чтобы просто начать"
 }
+```
 
 # Установка зависимостей
+
 npm install
 
 # Запуск в режиме разработки
+
 npm run dev
 
 # Сборка для продакшена
+
 npm run build
 
 # Запуск собранного приложения
-npm run start
 
-```
+npm run start
