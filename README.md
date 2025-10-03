@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💪 FitHub Tariff Page — Тестовое задание Frontend-разработчику
 
-## Getting Started
+[🚀 Перейти на сайт](https://fitness-test-lime.vercel.app/)  
+[🎨 Макет в Figma](https://www.figma.com/file/9XgWK3p8hV7kGaeNbVqnpm/%D0%B4%D0%BB%D1%8F-%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%BA%D0%B8?type=design&node-id=0%3A1&mode=design)
 
-First, run the development server:
+---
 
-```bash
+## 📌 Описание
+
+Адаптивная страница выбора тарифов для сервиса FitHub. Реализована по техническому заданию с использованием **Next.js**, **React**, **TypeScript**, **Tailwind CSS**.  
+Проект демонстрирует работу с внешним API, анимацией чисел и таймера, логикой скидок и пользовательским взаимодействием.
+
+---
+
+## 🧩 Стек технологий
+
+- **React 19**
+- **Next.js 15**
+- **TypeScript**
+- **Tailwind CSS 4**
+- **ESLint**
+- **@number-flow/react** — анимация чисел
+- **clsx / tailwind-merge**
+
+---
+
+## 🔌 API
+
+Источник данных о тарифах:  
+`GET https://t-core.fit-hub.pro/Test/GetTariffs`
+
+### Пример ответа:
+
+```json
+{
+  "id": "f347d050-073c-4969-ae91-7346f935cf70",
+  "period": "1 неделя",
+  "price": 149,
+  "full_price": 999,
+  "is_best": false,
+  "text": "Чтобы просто начать"
+}
+
+# Установка зависимостей
+npm install
+
+# Запуск в режиме разработки
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Сборка для продакшена
+npm run build
+
+# Запуск собранного приложения
+npm run start
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
